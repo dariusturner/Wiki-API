@@ -33,7 +33,7 @@ app.route("/articles")
     if (!err) {
       res.send(foundArticles);
     } else {
-      console.log(err);
+      res.send(err);
     }
   });
 })
@@ -85,7 +85,7 @@ app.route("/articles/:articleTitle")
       if (!err){
         res.send("Successfully updated article.");
       } else {
-        res.send("There was an issue updating the article.");
+        res.send(err);
       }
     }
   );
