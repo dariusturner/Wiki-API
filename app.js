@@ -71,7 +71,7 @@ app.route("/articles/:articleTitle")
     if (foundArticle) {
       res.send(foundArticle);
     } else {
-      res.send("No artciels matching that title was found.");
+      res.send("No article matching that title was found.");
     }
   });
 })
