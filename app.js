@@ -71,7 +71,7 @@ app.route("/articles/:articleTitle")
     if (foundArticle) {
       res.send(foundArticle);
     } else {
-      res.send("No article matching that title was found.");
+      res.send(err);
     }
   });
 })
@@ -86,6 +86,33 @@ app.route("/articles/:articleTitle")
         res.send("Successfully updated article.");
       } else {
         res.send("There was an issue updating the article.");
+      }
+    }
+  );
+})
+
+.patch(function(req, res){
+  Article.update(
+    {title: req.params.articleTitle},
+    {$set: req.body},
+    function(err){
+      if (!err) {
+        res.send("Successfully updated the article.");
+      } else {
+        res.send(err);
+      }
+    }
+  );
+})
+
+.delete(function(req, res){
+  Article.deleteOne(
+    {title: req.params.articleTitle},
+    function(err){
+      if (!err) {
+        res.send("Successfully deleted the selected article!");
+      } else {
+        res.send(err);
       }
     }
   );
